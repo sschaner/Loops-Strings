@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Text;
-using System.Text.RegularExpressions;
 
-namespace Exercise_29
+namespace Exercise_30
 {
     /*
-     * Exercise 29
+     * Exercise 30
      * 
      * Description:
      * Prompt the user to enter some text.
-     * Remove all the vowels and output the text.
+     * Reverse the text.
      */
     class Program
     {
@@ -21,7 +20,8 @@ namespace Exercise_29
             do // Loops as long as the user wants to enter some text
             {
                 string userString = EnterText();
-                RemoveVowelsFromMiddleOfWords(userString);
+                string reverseUserString = ReverseString(userString);
+                Console.WriteLine(reverseUserString);
 
                 string continueInput = "";
                 do // Loop for determining if the user wants to enter text again
@@ -56,7 +56,7 @@ namespace Exercise_29
         // shows the title of the application
         public static void Title()
         {
-            Console.Title = "Exercise 29";
+            Console.Title = "Exercise 31";
         }
 
         // Ask the user to enter a sentence
@@ -67,15 +67,18 @@ namespace Exercise_29
             return userInput;
         }
 
-        public static void RemoveVowelsFromMiddleOfWords(string stringToBeSplit)
+        public static string ReverseString(string userString)
         {
-            string stringWithoutVowelsInMiddle = "";
-            foreach (string word in stringToBeSplit.Split(" "))
+            char[] stringLetters = userString.ToCharArray();
+            string reversedString = "";
+            StringBuilder builder = new StringBuilder();
+
+            for (int i = stringLetters.Length - 1; i >= 0; i--)
             {
-                // Remove the middle vowel(s) from each word in the sentence (Leave vowels at the beginning or end of words)
-                stringWithoutVowelsInMiddle = Regex.Replace(word, @"(?<!^)[aeiouAEIOU](?!\W)", "");
-                Console.Write($"{stringWithoutVowelsInMiddle} ");
-            }  
+                builder.Append(stringLetters[i]);
+            }
+            reversedString = builder.ToString();
+            return reversedString;
         }
     }
 }
