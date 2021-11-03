@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Text;
 
-namespace Exercise_23
+namespace Exercise_26
 {
     /*
-     * Exercise 23
+     * Exercise 26
      * 
      * Description:
-     * Prompt the user to enter a string.
-     * Extract and output the first ten characters of the string.
+     * Prompt the user to enter some text
+     * Count and output how many vowels were in the string.
      */
     class Program
     {
@@ -20,9 +19,9 @@ namespace Exercise_23
             do // Loops as long as the user wants to enter some text
             {
                 string userString = EnterText();
-                string firstTen = FirstTenCharactersOfTheString(userString);
-                Console.WriteLine($"The first ten characters were: {firstTen}");
-
+                int numberOfVowels = GetVowelCount(userString);
+                string termPlurality = DetermineCorrectPluralUsage("vowel", numberOfVowels);
+                Console.WriteLine($"There are {numberOfVowels} {termPlurality}.");
 
                 string continueInput = "";
                 do // Loop for determining if the user wants to enter text again
@@ -57,10 +56,10 @@ namespace Exercise_23
         // shows the title of the application
         public static void Title()
         {
-            Console.Title = "Exercise 23";
+            Console.Title = "Exercise 26";
         }
 
-        // Ask the user to enter some text
+        // Ask the user to enter a sentence
         public static string EnterText()
         {
             Console.Write("Enter some text: ");
@@ -68,16 +67,39 @@ namespace Exercise_23
             return userInput;
         }
 
-        public static string FirstTenCharactersOfTheString(string userString)
+        public static int GetVowelCount(string userString)
         {
-            if (userString.Length < 10)
+            char[] stringLetters = userString.ToCharArray();
+            int vowelCounter = 0;
+
+            // Loop through characters and increase vowel count if necessary
+            for (int i = 0; i < userString.Length; i++)
             {
-                return userString;
+                switch (userString[i].ToString().ToLower())
+                {
+                    case "a":
+                    case "e":
+                    case "i":
+                    case "o":
+                    case "u":
+                        // Increment vowel counter
+                        vowelCounter++;
+                        break;
+                }
+            }
+            return vowelCounter;
+        }
+
+        public static string DetermineCorrectPluralUsage(string term, int termCount)
+        {
+            // If count > 1, add an 's'
+            if (termCount > 1)
+            {
+                return term + "s";
             }
             else
             {
-                string firstTenCharacers = userString.Substring(0, 10);
-                return firstTenCharacers;
+                return term;
             }
         }
     }

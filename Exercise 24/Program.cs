@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Text;
 
-namespace Exercise_23
+namespace Exercise_24
 {
     /*
-     * Exercise 23
+     * Exercise 24
      * 
      * Description:
      * Prompt the user to enter a string.
-     * Extract and output the first ten characters of the string.
+     * Extract and output the last ten characters of the string.
      */
     class Program
     {
@@ -20,8 +19,8 @@ namespace Exercise_23
             do // Loops as long as the user wants to enter some text
             {
                 string userString = EnterText();
-                string firstTen = FirstTenCharactersOfTheString(userString);
-                Console.WriteLine($"The first ten characters were: {firstTen}");
+                string lastTen = LastTenCharactersOfTheString(userString);
+                Console.WriteLine($"The last ten characters were: {lastTen}");
 
 
                 string continueInput = "";
@@ -57,7 +56,7 @@ namespace Exercise_23
         // shows the title of the application
         public static void Title()
         {
-            Console.Title = "Exercise 23";
+            Console.Title = "Exercise 24";
         }
 
         // Ask the user to enter some text
@@ -68,7 +67,7 @@ namespace Exercise_23
             return userInput;
         }
 
-        public static string FirstTenCharactersOfTheString(string userString)
+        public static string LastTenCharactersOfTheString(string userString)
         {
             if (userString.Length < 10)
             {
@@ -76,8 +75,8 @@ namespace Exercise_23
             }
             else
             {
-                string firstTenCharacers = userString.Substring(0, 10);
-                return firstTenCharacers;
+                string lastTenCharacers = userString.Substring(userString.Length - 10, 10);
+                return lastTenCharacers;
             }
         }
     }

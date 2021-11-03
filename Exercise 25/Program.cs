@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Text;
 
-namespace Exercise_23
+namespace Exercise_25
 {
     /*
-     * Exercise 23
+     * Exercise 25
      * 
      * Description:
-     * Prompt the user to enter a string.
-     * Extract and output the first ten characters of the string.
+     * Prompt the user to enter a sentence.
+     * Split the sentence into individual words and display each word on its own line.
      */
     class Program
     {
@@ -19,10 +18,8 @@ namespace Exercise_23
             bool enterAgain = false;
             do // Loops as long as the user wants to enter some text
             {
-                string userString = EnterText();
-                string firstTen = FirstTenCharactersOfTheString(userString);
-                Console.WriteLine($"The first ten characters were: {firstTen}");
-
+                string userString = EnterSentence();
+                SeparateWordsFromSentence(userString);
 
                 string continueInput = "";
                 do // Loop for determining if the user wants to enter text again
@@ -57,27 +54,24 @@ namespace Exercise_23
         // shows the title of the application
         public static void Title()
         {
-            Console.Title = "Exercise 23";
+            Console.Title = "Exercise 25";
         }
 
-        // Ask the user to enter some text
-        public static string EnterText()
+        // Ask the user to enter a sentence
+        public static string EnterSentence()
         {
-            Console.Write("Enter some text: ");
+            Console.Write("Enter a sentence: ");
             string userInput = Console.ReadLine();
             return userInput;
         }
 
-        public static string FirstTenCharactersOfTheString(string userString)
+        public static void SeparateWordsFromSentence(string userString)
         {
-            if (userString.Length < 10)
+            string[] words = userString.Split(" ");
+
+            foreach (string word in words)
             {
-                return userString;
-            }
-            else
-            {
-                string firstTenCharacers = userString.Substring(0, 10);
-                return firstTenCharacers;
+                Console.WriteLine(word);
             }
         }
     }
